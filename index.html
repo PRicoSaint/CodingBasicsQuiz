@@ -1,31 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href = "./css/style.css"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
     <title>Coding Quiz</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <h1 id="titulo">Coding Quiz</h1>
-        <p id="countdown"></p>
+      <h1 id="titulo">Coding Quiz</h1>
+      <p id="countdown"></p>
     </header>
-<main>
-<p id="question">This quiz will test your knowledge regarding coding. You have 75 seconds to answer 5 multiple-choice questions. Wrong answers will substract time.
-    The final score is dependent on how fast you can answer the questions. Click the start button to start or click the high scores button to display 
-    all high scores.
-</p>
-<ul id = "answers"></ul>
-<form method="POST">
-    <input type="text" placeholder="John Smith" name="todo-text" id="nameinput" />
-  </form>
-<div id ="result">/>
-<button id="startgame">Start Game</button>
-<button id = "showhighscores">High Scores</button>
-
-</main>
-</body>
-<script src = "js/script.js"></script>
+    <main>
+      <p id="question">
+        This quiz will test your knowledge regarding coding. You have 75 seconds
+        to answer 5 multiple-choice questions. Wrong answers will substract
+        time. The final score is dependent on how fast you can answer the
+        questions. Click the start button to start or click the high scores
+        button to display all high scores.
+      </p>
+      <ul id="answers"></ul>
+      <form id="box" method="POST">
+        <input
+          type="text"
+          placeholder="Type Name here and hit Enter"
+          name ="nameinput"
+          id="nameinput"
+        />
+      </form>
+      <div id="result"></div>
+      <button id="startgame">Start Game</button>
+      <button id="showhighscores">High Scores</button>
+    </main>
+  </body>
+  <script src="js/script.js"></script>
 </html>

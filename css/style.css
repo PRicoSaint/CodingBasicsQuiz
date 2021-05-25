@@ -1,5 +1,6 @@
 
 
-form{
+#box{
     visibility: hidden;
+    /* display:none; */
 }

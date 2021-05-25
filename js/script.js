@@ -9,6 +9,7 @@ var aArea = document.querySelector("#answers");
 var tArea = document.querySelector("#titulo");
 var result = document.querySelector("#result");
 var nameInput = document.querySelector("#nameinput");
+var box = document.querySelector("#box");
 var word = 'GAME OVER';
 var question1 = ["What is the color of the ocean?"];
 var question2 = ["What is the color of money?"];
@@ -21,11 +22,16 @@ var answers3 = ["Red", "White", "Blue", "Black", "Green"];
 var answers4 = ["Red", "White", "Blue", "Black", "Green"];
 var answers5 = ["Red", "White", "Blue", "Black", "Green"];
 var timeLeft = 75;
+var wrongAnswers = [];
 var scores = [];
 var numericScores = [];
+var once ={
+    once : true
+};
 
 
 startgame.addEventListener("click", function(){
+    console.log(wrongAnswers);
     qArea.innerHTML = '';
     startgame.setAttribute("style", "display: none");
     showhighscores.setAttribute("style", "display:none");
@@ -38,37 +44,22 @@ startgame.addEventListener("click", function(){
     
         if (timeLeft === 1){
             timerEl.textContent = "Timer: " + timeLeft + " second remaining.";
-        }
-        if(timeLeft === 0) {
+        }else if(timeLeft === 0) {
     
             clearInterval(timeInterval);
             timerEl.setAttribute("style", "visibility:hidden");
-            displayMessage();
-        }
+            // gameFinish();
+        // } else if (timeLeft > 0 && tArea == "Quiz Complete!"){
+        //     clearInterval(timeInterval);
+        //     timerEl.setAttribute("style", "visibility:hidden");
+        } 
         }, 1000);
         
     
     }
-    
-    // Displays the message one word at a time
-    function displayMessage() {
-        var wordCount = 0;
-    
-        // Uses the `setInterval()` method to call a function to be executed every 1000 milliseconds
-        var msgInterval = setInterval(function () {
-        // If there are no more words left in the message
-        if ([wordCount] === undefined) {
-            // Use `clearInterval()` to stop the timer
-            clearInterval(msgInterval);
-        } else {
-            // Display one word of the message
-            mainEl.textContent = word[wordCount];
-            wordCount++;
-        }
-        }, 1000);
-    }
 countdown();
     function displayquestion1(){
+        console.log(wrongAnswers);
         tArea.innerHTML = "Question 1";
         qArea.innerHTML = question1;
         aArea.innerHTML = "";
@@ -87,29 +78,34 @@ countdown();
          li.appendChild(button);
         aArea.appendChild(li);
         }
-    }
-displayquestion1();
-
         aArea.addEventListener("click", function(event) {
             var element = event.target;
             if (element.matches("button") === true) {
+
             var index = element.parentElement.getAttribute("data-index");
                 if (index == 2){
-                    result.innerHTML = "CORRECT!!!"
+                    result.innerHTML = "CORRECT!!!";
                     displayquestion2();
 
-                }else {
-                    result.innerHTML = "WRONG!!!"
-                    var newtime = (timeLeft- 5);
-                    timeLeft = newtime;
+                }else  {
+                    result.innerHTML = "WRONG!!!";
+                    wrongAnswers.push("1");
                     displayquestion2();
                 }
-                }else{
-                    //  DO NOTHING
+                }else {
+                    // DO NOTHING
                 }
            
-  });
+         }, once);
+    }
+
+init();
+        
   function displayquestion2(){
+    console.log(wrongAnswers);
+    setTimeout(function(){
+        result.innerHTML = '';
+    }, 3000);
     tArea.innerHTML = "Question 2";
     qArea.innerHTML = question2;
     aArea.innerHTML = "";
@@ -128,27 +124,36 @@ displayquestion1();
      li.appendChild(button);
     aArea.appendChild(li);
     }
-}
-aArea.addEventListener("click", function(event) {
-    var element = event.target;
-    if (element.matches("button") === true) {
-    var index = element.parentElement.getAttribute("data-index");
-        if (index == 4){
-            result.innerHTML = "CORRECT!!!"
-            displayquestion3();
+    aArea.addEventListener("click", function(event) {
+        
+        var element = event.target;
+        if (element.matches("button") === true) {
+        var index = element.parentElement.getAttribute("data-index");
+            if (index == 4){
+                result.innerHTML = "CORRECT!!!";
+                setTimeout(function(){
+                    result.innerHTML = '';
+                }, 3000);
+                displayquestion3();
+    
+            }else {
+                result.innerHTML = "WRONG!!!";
+                wrongAnswers.push("1");
+                setTimeout(function(){
+                    result.innerHTML = '';
+                }, 3000);
+                displayquestion3();
+            }
+            }else {
+                // DO NOTHING
+            }
+       
+    }, once);
 
-        }else {
-            result.innerHTML = "WRONG!!!"
-            var newtime = (timeLeft- 5);
-            timeLeft = newtime;
-            displayquestion3();
-        }
-        }else{
-            //  DO NOTHING
-        }
-   
-});
+};
+
 function displayquestion3(){
+    console.log(wrongAnswers);
     tArea.innerHTML = "Question 3";
     qArea.innerHTML = question3;
     aArea.innerHTML = "";
@@ -167,28 +172,38 @@ function displayquestion3(){
      li.appendChild(button);
     aArea.appendChild(li);
     }
-}
-aArea.addEventListener("click", function(event) {
-    var element = event.target;
-    if (element.matches("button") === true) {
-    var index = element.parentElement.getAttribute("data-index");
-        if (index == 4){
-            result.innerHTML = "CORRECT!!!"
-            displayquestion4();
+    aArea.addEventListener("click", function(event) {
+        
+        var element = event.target;
+        if (element.matches("button") === true) {
+        var index = element.parentElement.getAttribute("data-index");
+            if (index == 3){
+                result.innerHTML = "CORRECT!!!";
+                setTimeout(function(){
+                    result.innerHTML = '';
+                }, 3000);
+                displayquestion4();
+    
+            }else {
+                result.innerHTML = "WRONG!!!";
+                wrongAnswers.push("1");
+                setTimeout(function(){
+                    result.innerHTML = '';
+                }, 3000);
+                displayquestion4();
+            }
+            }else {
+                // DO NOTHING
+            }
+       
+    }, once);
 
-        }else {
-            result.innerHTML = "WRONG!!!"
-            var newtime = (timeLeft- 5);
-            timeLeft = newtime;
-            displayquestion4();
-        }
-        }else{
-            //  DO NOTHING
-        }
-   
-});
+
+}
+
 
 function displayquestion4(){
+    console.log(wrongAnswers);
     tArea.innerHTML = "Question 4";
     qArea.innerHTML = question4;
     aArea.innerHTML = "";
@@ -207,27 +222,36 @@ function displayquestion4(){
      li.appendChild(button);
     aArea.appendChild(li);
     }
-}
-aArea.addEventListener("click", function(event) {
-    var element = event.target;
-    if (element.matches("button") === true) {
-    var index = element.parentElement.getAttribute("data-index");
-        if (index == 0){
-            result.innerHTML = "CORRECT!!!"
-            displayquestion5();
+    aArea.addEventListener("click", function(event) {
+        
+        var element = event.target;
+        if (element.matches("button") === true) {
+        var index = element.parentElement.getAttribute("data-index");
+            if (index == 0){
+                result.innerHTML = "CORRECT!!!";
+                setTimeout(function(){
+                    result.innerHTML = '';
+                }, 3000);
+                displayquestion5();
+    
+            }else {
+                result.innerHTML = "WRONG!!!";
+                wrongAnswers.push("1");
+                setTimeout(function(){
+                    result.innerHTML = '';
+                }, 3000);
+                displayquestion5();
+            }
+            }else {
+                // DO NOTHING
+            }
+       
+    }, once);
 
-        }else {
-            result.innerHTML = "WRONG!!!"
-            var newtime = (timeLeft- 5);
-            timeLeft = newtime;
-            displayquestion5();
-        }
-        }else{
-            //  DO NOTHING
-        }
-   
-});
+}
+
 function displayquestion5(){
+    console.log(wrongAnswers);
     tArea.innerHTML = "Question 5";
     qArea.innerHTML = question5;
     aArea.innerHTML = "";
@@ -246,42 +270,62 @@ function displayquestion5(){
      li.appendChild(button);
     aArea.appendChild(li);
     }
+    aArea.addEventListener("click", function(event) {
+        
+        var element = event.target;
+        if (element.matches("button") === true) {
+        var index = element.parentElement.getAttribute("data-index");
+            if (index == 1){
+                result.innerHTML = "CORRECT!!!";
+                setTimeout(function(){
+                    result.innerHTML = '';
+                }, 3000);
+                gameFinish();
+    
+            }else {
+                result.innerHTML = "WRONG!!!";
+                wrongAnswers.push("1");
+                gameFinish();
+                
+            }
+            }else {
+                // DO NOTHING
+            }
+       
+    }, once);
 }
-
-
-aArea.addEventListener("click", function(event) {
-    var element = event.target;
-    if (element.matches("button") === true) {
-    var index = element.parentElement.getAttribute("data-index");
-        if (index == 1){
-            result.innerHTML = "CORRECT!!!"
-            gameFinish();
-            
-
-        }else {
-            result.innerHTML = "WRONG!!!"
-            var newtime = (timeLeft- 5);
-            timeLeft = newtime;
-            gameFinish();
-            
-        }
-        }else{
-            //  DO NOTHING
-        }
-   
-});
 
         function gameFinish(){
             tArea.innerHTML = "Quiz Complete!";
-            qArea.innerHTML = "Your result is " + timeLeft;
+            console.log(timeLeft);
+            console.log(wrongAnswers);
+            console.log(wrongAnswers.length*5);
+            var finalTime = timeLeft - ((wrongAnswers.length)*2.5);
+            qArea.innerHTML = "Your result is " + finalTime;
             aArea.innerHTML = "";
+            box.setAttribute("style", "visibility: visible");
+            timerEl.setAttribute("style", "visibility: hidden");
+             
 
-
-
-
-            
+            box.addEventListener("submit", function(event) {
+                event.preventDefault();
+                var nameText = nameInput.value.trim();
+                var numericScores = finalTime.value;                   
+                // If the box is empty, it will not store anything.
+                if (nameText === "") {
+                  return;
+                }
+               // Takes input and pushes it to scores array, end of it.
+                scores.push(nameText);
+                numericScores.push(finalTime);
+                // nameInput.value = "THANKS FOR PLAYING";
+               
+                // Puts it into the storage and also displays it as a list using previous functions.
+                saveScores();
+                showHighScores()
+              });  
         }
-
+        
 
         // TO DO: still working on this.
         function init() {
@@ -293,6 +337,7 @@ aArea.addEventListener("click", function(event) {
               scores = storedNames;
               numericScores = storedScores;
             }
+            displayquestion1();
           }
           
           function saveScores() {
@@ -301,23 +346,23 @@ aArea.addEventListener("click", function(event) {
             localStorage.setItem("Scores", JSON.stringify(numericScores));
           }
           // Waits for typed content to be submitted when enter is pressed on form.
-          nameinput.addEventListener("submit", function(event) {
-            event.preventDefault();
-            var nameText = nameInput.value.trim();
-            var numericScores = timeLeft.value.trim();                   
-            // If the box is empty, it will not store anything.
-            if (nameText === "") {
-              return;
-            }
-           // Takes input and pushes it to todo array, end of it.
-            scores.push(nameText);
-            numericScores.push(timeLeft);
-            nameInput.value = "THANKS FOR PLAYING";
+        //   nameinput.addEventListener("submit", function(event) {
+        //     event.preventDefault();
+        //     var nameText = nameInput.value.trim();
+        //     var numericScores = timeLeft.value.trim();                   
+        //     // If the box is empty, it will not store anything.
+        //     if (nameText === "") {
+        //       return;
+        //     }
+        //    // Takes input and pushes it to todo array, end of it.
+        //     scores.push(nameText);
+        //     numericScores.push(timeLeft);
+        //     nameInput.value = "THANKS FOR PLAYING";
            
-            // Puts it into the storage and also displays it as a list using previous functions.
-            saveScores();
-            showHighScores()
-          });
+        //     // Puts it into the storage and also displays it as a list using previous functions.
+        //     saveScores();
+        //     showHighScores()
+        //   });
         function showHighScores(){
   
                 tArea.innerHTML = "High Scores";
@@ -342,7 +387,7 @@ aArea.addEventListener("click", function(event) {
               button.textContent = "Reset scores";
               aArea.appendChild(reset);
               aArea.addEventListener("click", function(){
-                  qArea.innerHTML = "";
+                qArea.innerHTML = "";
                 scores = [];
                 numericScores = [];
                 localStorage.setItem("Winners", JSON.stringify(scores));
