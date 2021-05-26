@@ -1,7 +1,6 @@
 // Javascript for the Coding Quiz Game
 
 var startgame = document.querySelector("#startgame");
-var showhighscores = document.querySelector("#showhighscores");
 var timerEl = document.getElementById('countdown');
 var mainEl = document.getElementById('main');
 var qArea = document.querySelector("#question");
@@ -34,10 +33,7 @@ startgame.addEventListener("click", function(){
     console.log(wrongAnswers);
     qArea.innerHTML = '';
     startgame.setAttribute("style", "display: none");
-    showhighscores.setAttribute("style", "display:none");
     function countdown() {
-        // var timeLeft = 75;
-
         var timeInterval = setInterval(function () {
         timeLeft--;
         timerEl.textContent = "Timer: " + timeLeft + " seconds remaining.";
@@ -48,16 +44,12 @@ startgame.addEventListener("click", function(){
     
             clearInterval(timeInterval);
             timerEl.setAttribute("style", "visibility:hidden");
-            // gameFinish();
-        // } else if (timeLeft > 0 && tArea == "Quiz Complete!"){
-        //     clearInterval(timeInterval);
-        //     timerEl.setAttribute("style", "visibility:hidden");
+            gameFinish();
         } 
         }, 1000);
         
     
     }
-countdown();
     function displayquestion1(){
         console.log(wrongAnswers);
         tArea.innerHTML = "Question 1";
@@ -98,8 +90,6 @@ countdown();
            
          }, once);
     }
-
-init();
         
   function displayquestion2(){
     console.log(wrongAnswers);
@@ -300,7 +290,8 @@ function displayquestion5(){
             console.log(timeLeft);
             console.log(wrongAnswers);
             console.log(wrongAnswers.length*5);
-            var finalTime = timeLeft - ((wrongAnswers.length)*2.5);
+            var finalTime = timeLeft - ((wrongAnswers.length)*20);
+            console.log(finalTime);
             qArea.innerHTML = "Your result is " + finalTime;
             aArea.innerHTML = "";
             box.setAttribute("style", "visibility: visible");
@@ -309,8 +300,11 @@ function displayquestion5(){
 
             box.addEventListener("submit", function(event) {
                 event.preventDefault();
-                var nameText = nameInput.value.trim();
-                var numericScores = finalTime.value;                   
+                console.log(nameInput);
+                console.log(finalTime);
+                var nameText = nameInput.value.trim();  
+                console.log(nameText);
+                console.log(numericScores);                 
                 // If the box is empty, it will not store anything.
                 if (nameText === "") {
                   return;
@@ -318,16 +312,14 @@ function displayquestion5(){
                // Takes input and pushes it to scores array, end of it.
                 scores.push(nameText);
                 numericScores.push(finalTime);
-                // nameInput.value = "THANKS FOR PLAYING";
-               
-                // Puts it into the storage and also displays it as a list using previous functions.
+                console.log(numericScores);
+
                 saveScores();
                 showHighScores()
-              });  
+              }, once);  
         }
         
 
-        // TO DO: still working on this.
         function init() {
             // Makes string into object from local storage.
             var storedNames = JSON.parse(localStorage.getItem("Winners"));
@@ -337,6 +329,7 @@ function displayquestion5(){
               scores = storedNames;
               numericScores = storedScores;
             }
+            countdown();
             displayquestion1();
           }
           
@@ -345,26 +338,8 @@ function displayquestion5(){
             localStorage.setItem("Winners", JSON.stringify(scores));
             localStorage.setItem("Scores", JSON.stringify(numericScores));
           }
-          // Waits for typed content to be submitted when enter is pressed on form.
-        //   nameinput.addEventListener("submit", function(event) {
-        //     event.preventDefault();
-        //     var nameText = nameInput.value.trim();
-        //     var numericScores = timeLeft.value.trim();                   
-        //     // If the box is empty, it will not store anything.
-        //     if (nameText === "") {
-        //       return;
-        //     }
-        //    // Takes input and pushes it to todo array, end of it.
-        //     scores.push(nameText);
-        //     numericScores.push(timeLeft);
-        //     nameInput.value = "THANKS FOR PLAYING";
-           
-        //     // Puts it into the storage and also displays it as a list using previous functions.
-        //     saveScores();
-        //     showHighScores()
-        //   });
         function showHighScores(){
-  
+                box.setAttribute("style", "visibility: hidden");
                 tArea.innerHTML = "High Scores";
                 qArea.innerHTML = "";
                 aArea.innerHTML = "";
@@ -372,7 +347,7 @@ function displayquestion5(){
                 // // todoCountSpan.textContent = todos.length;
                 
                 // Makes items into a list. 
-                for (var i = 0; i < todos.length; i++) {
+                for (var i = 0; i < scores.length; i++) {
                   var finalists = scores[i];
                   var finalScores = numericScores[i];
               
@@ -383,16 +358,21 @@ function displayquestion5(){
                 
               }
               var reset = document.createElement("button");
-            //   var goback = document.createElement("button");
-              button.textContent = "Reset scores";
+              var goback = document.createElement("button");
+              goback.textContent = "Retry";
+              reset.textContent = "Reset Scores";
               aArea.appendChild(reset);
-              aArea.addEventListener("click", function(){
+              aArea.appendChild(goback);
+              reset.addEventListener("click", function(){
                 qArea.innerHTML = "";
                 scores = [];
                 numericScores = [];
                 localStorage.setItem("Winners", JSON.stringify(scores));
                 localStorage.setItem("Scores", JSON.stringify(numericScores));
-              });
+              },once);
+              goback.addEventListener("click", function(){
+                window.location.reload();
+              },once);
 
         }
 
@@ -420,4 +400,4 @@ function displayquestion5(){
 
 
 init();
-});
+},once);
