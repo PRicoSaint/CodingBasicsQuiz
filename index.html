@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<!-- The html encompasses the bones of the Coding Quiz.
+It sets up the different sections of the page. I created a header, question area, answer area and results area. A form is also present but initially hidden.
+Javascript then proceeds to modify the contents of each section as needed. -->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -22,9 +25,11 @@
       </p>
       <ul id="answers"></ul>
       <form id="box" method="POST">
+        <p>Enter name and hit Enter to submit:
+        </p>
         <input
           type="text"
-          placeholder="Type Name here and hit Enter"
+          placeholder="Ericka Sacoya"
           name ="nameinput"
           id="nameinput"
         />
