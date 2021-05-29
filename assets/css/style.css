@@ -1,52 +1,48 @@
 /* This style sheet is for the Coding Quiz Game */
 /* Most of the styles are simple movement to more center of the screen. Buttons are also purple in color. */
-*{
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    }
-#box{
-    visibility: hidden;
+* {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
-#titulo{
-    font-size: 30px;
-    font-weight: bold;
-    text-align: center;
+#box {
+  visibility: hidden;
 }
-
-#countdown{
-    float: right;
-}
-#question{
-    font-size: 20px;
-    margin: 0 400px;
-
-}
-#answers{
-    text-align: left;
-    margin-left: 400px;
-    list-style-type: none;
-    font-size: 20px;
+#titulo {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
 }
 
-button{
-    background-color: purple;
-    color: whitesmoke;
-    transition: 0.5s;
-    margin: 2px;
+#countdown {
+  float: right;
+}
+#question {
+  font-size: 20px;
+  margin: 0 400px;
+}
+#answers {
+  text-align: left;
+  margin-left: 400px;
+  list-style-type: none;
+  font-size: 20px;
+}
 
+button {
+  background-color: purple;
+  color: whitesmoke;
+  transition: 0.5s;
+  margin: 2px;
 }
-button:hover{
-    background-color: rgb(216, 7, 216);
+button:hover {
+  background-color: rgb(216, 7, 216);
 }
-form{
-    margin-left: 400px;
+form {
+  margin-left: 400px;
 }
-#result{
-    text-align: left;
-    margin-left: 200px;
-    font-style: italic;
-
+#result {
+  text-align: left;
+  margin-left: 200px;
+  font-style: italic;
 }
-#startgame{
-    margin-left: 50%;
-
+#startgame {
+  margin-left: 50%;
 }

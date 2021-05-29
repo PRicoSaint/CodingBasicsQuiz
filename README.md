@@ -9,9 +9,9 @@ Next, I worked on the question and answer modules. The quiz needed to display qu
 
 ``Event listeners were used throughout this project to detect button clicks and user form submittals.``
 
-I did my best to create questions that would be used in an actual coding Quiz. Once I was able to display the questions and list of answers. I then tied each question together in sequential order (Question 1 to 5). The wrong answer will subtract an amount at the end of the function, reducing the score of the quiz taker.
+I did my best to create questions that would be used in an actual coding Quiz. Once I was able to display the questions and list of answers. I then tied each question together in sequential order (Question 1 to 5). The wrong answer will subtract 10 seconds from the timer, reducing the final score of the user.
 
-When all the questions are answered or the timer runs out, the quiz is complete. The user is presented with a box to type in their name so that it can be saved as part of the HIGH SCORES list. The high scores list is displayed after the user hits enter on their name. The user can see all the scores currently saved to local storage. There is an option to clear them or a button to retry the quiz. Since the scores are stored in local storage, it can be seen again even when the page is closed and reloaded/reopened.
+When all the questions are answered or the timer runs out, the quiz is complete. The user is presented with a box to type in their name so that it can be saved as part of the HIGH SCORES list. The high scores list is displayed after the user hits enter on their name. The user can see all the scores currently saved to local storage. There is an option to clear them or a button to retry the quiz. Since the scores are stored in local storage, it can be seen again, even when the page is closed and reloaded/reopened.
 
 ## Project Link
 https://pricosaint.github.io/CodingBasicsQuiz/

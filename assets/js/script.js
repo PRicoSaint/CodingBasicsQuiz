@@ -49,7 +49,7 @@ var answers5 = ["1. punch", "2. submit", "3. kick", "4. smile", "5. wave"];
 var timeLeft = 75;
 // Sets up global variables for names and scores to be used at the end of the sequence. Also included a done variable to help stop the timer from continuing to run when user has finished the questions.
 
-var wrongAnswers = [];
+// var wrongAnswers = [];
 var scores = [];
 var numericScores = [];
 var once = {
@@ -62,7 +62,6 @@ startgame.addEventListener(
   "click",
   function () {
     var done = [];
-    // console.log(wrongAnswers);
     // Clears the question section.
     qArea.innerHTML = "";
     // hides the start game button
@@ -75,11 +74,11 @@ startgame.addEventListener(
 
         if (timeLeft === 1) {
           timerEl.textContent = "Timer: " + timeLeft + " second remaining.";
-        } else if (timeLeft <= 0 && done !== "done") {
+        } else if (timeLeft <= 0 && done != "done") {
           clearInterval(timeInterval);
           timerEl.setAttribute("style", "visibility:hidden");
           gameFinish();
-        } else if (timeLeft === 0 && done === "done") {
+        } else if (timeLeft === 0 && done == "done") {
           clearInterval(timeInterval);
         }
       }, 1000);
@@ -106,8 +105,8 @@ startgame.addEventListener(
         li.appendChild(button);
         aArea.appendChild(li);
       }
-      //   This event listener waits for user to user to click one of the buttons. It checks to see if the attribute matches the number for the right answer.
-      // Wrong stores a value in the wrong answers array.
+      //  This event listener waits for user to user to click one of the buttons. It checks to see if the attribute matches the number for the right answer.
+      // Wrong answers will subtract -10 seconds from the score.
       // Correct answer continues to next question without penalty.
       // Both will show their corresponding correct or wrong message to user.
       aArea.addEventListener(
@@ -121,7 +120,7 @@ startgame.addEventListener(
               displayquestion2();
             } else {
               result.innerHTML = "WRONG!!!";
-              wrongAnswers.push("1");
+              timeLeft = timeLeft - 10;
               displayquestion2();
             }
           } else {
@@ -133,7 +132,6 @@ startgame.addEventListener(
     }
     // This function is the same as the previous one.
     function displayquestion2() {
-      console.log(wrongAnswers);
       setTimeout(function () {
         result.innerHTML = "";
       }, 3000);
@@ -155,7 +153,7 @@ startgame.addEventListener(
         aArea.appendChild(li);
       }
       //   This event listener waits for user to user to click one of the buttons. It checks to see if the attribute matches the number for the right answer.
-      // Wrong stores a value in the wrong answers array.
+      // Wrong answers will subtract -10 seconds from the score.
       // Correct answer continues to next question without penalty.
       // Both will show their corresponding correct or wrong message to user.
       aArea.addEventListener(
@@ -172,7 +170,7 @@ startgame.addEventListener(
               displayquestion3();
             } else {
               result.innerHTML = "WRONG!!!";
-              wrongAnswers.push("1");
+              timeLeft = timeLeft - 10;
               setTimeout(function () {
                 result.innerHTML = "";
               }, 3000);
@@ -187,7 +185,6 @@ startgame.addEventListener(
     }
     // This function is the same as the previous one.
     function displayquestion3() {
-      console.log(wrongAnswers);
       tArea.innerHTML = "Question 3";
       qArea.innerHTML = question3;
       aArea.innerHTML = "";
@@ -206,7 +203,7 @@ startgame.addEventListener(
         aArea.appendChild(li);
       }
       //   This event listener waits for user to user to click one of the buttons. It checks to see if the attribute matches the number for the right answer.
-      // Wrong stores a value in the wrong answers array.
+      // Wrong answers will subtract -10 seconds from the score.
       // Correct answer continues to next question without penalty.
       // Both will show their corresponding correct or wrong message to user.
       aArea.addEventListener(
@@ -223,7 +220,7 @@ startgame.addEventListener(
               displayquestion4();
             } else {
               result.innerHTML = "WRONG!!!";
-              wrongAnswers.push("1");
+              timeLeft = timeLeft - 10;
               setTimeout(function () {
                 result.innerHTML = "";
               }, 3000);
@@ -238,7 +235,6 @@ startgame.addEventListener(
     }
 
     function displayquestion4() {
-      console.log(wrongAnswers);
       tArea.innerHTML = "Question 4";
       qArea.innerHTML = question4;
       aArea.innerHTML = "";
@@ -257,7 +253,7 @@ startgame.addEventListener(
         aArea.appendChild(li);
       }
       //   This event listener waits for user to user to click one of the buttons. It checks to see if the attribute matches the number for the right answer.
-      // Wrong stores a value in the wrong answers array.
+      // Wrong answers will subtract -10 seconds from the score.
       // Correct answer continues to next question without penalty.
       // Both will show their corresponding correct or wrong message to user.
       aArea.addEventListener(
@@ -274,7 +270,7 @@ startgame.addEventListener(
               displayquestion5();
             } else {
               result.innerHTML = "WRONG!!!";
-              wrongAnswers.push("1");
+              timeLeft = timeLeft - 10;
               setTimeout(function () {
                 result.innerHTML = "";
               }, 3000);
@@ -289,7 +285,6 @@ startgame.addEventListener(
     }
 
     function displayquestion5() {
-      console.log(wrongAnswers);
       tArea.innerHTML = "Question 5";
       qArea.innerHTML = question5;
       aArea.innerHTML = "";
@@ -308,7 +303,7 @@ startgame.addEventListener(
         aArea.appendChild(li);
       }
       //   This event listener waits for user to user to click one of the buttons. It checks to see if the attribute matches the number for the right answer.
-      // Wrong stores a value in the wrong answers array.
+      // Wrong answers will subtract -10 seconds from the score.
       // Correct answer continues to gameFinish() without penalty.
       // Both will show their corresponding correct or wrong message to user.
       aArea.addEventListener(
@@ -325,7 +320,7 @@ startgame.addEventListener(
               gameFinish();
             } else {
               result.innerHTML = "WRONG!!!";
-              wrongAnswers.push("1");
+              timeLeft = timeLeft - 10;
               gameFinish();
             }
           } else {
@@ -343,10 +338,9 @@ startgame.addEventListener(
     function gameFinish() {
       tArea.innerHTML = "Quiz Complete!";
       done.push("done");
+      console.log(done);
       console.log(timeLeft);
-      console.log(wrongAnswers);
-      console.log(wrongAnswers.length * 5);
-      var finalTime = timeLeft - wrongAnswers.length * 20;
+      var finalTime = timeLeft;
       console.log(finalTime);
       qArea.innerHTML = "Your result is " + finalTime;
       aArea.innerHTML = "";
